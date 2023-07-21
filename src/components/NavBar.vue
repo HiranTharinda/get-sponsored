@@ -182,6 +182,152 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+@media (max-width: 900px) {
+  .nav {
+    top: 0;
+    background-color: white;
+    z-index: 10000;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 90px;
+    width: 100%;
+  }
+  .nav-left-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 50%;
+    margin-right: 5%;
+    margin-left: 5%;
+  }
+  .nav-right-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 50%;
+    margin-right: 5%;
+    margin-left: 5%;
+  }
+  .banner-title {
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-size: 4rem;
+    max-width: 800px;
+    min-width: 400px;
+  }
+  .banner-sub {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
+    width: 50%;
+
+    max-width: 800px;
+    min-width: 400px;
+  }
+  .banner-wrap {
+    /* box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.06); */
+    margin-top: 90px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 275px;
+    width: 100%;
+    z-index: 1000;
+    background-color: white;
+  }
+  .banner {
+    /* box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.06); */
+    margin-top: -30px;
+    margin-bottom: 51px;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 275px;
+    /* width: 60%; */
+    z-index: 1000;
+    max-width: 800px;
+    min-width: 400px;
+  }
+}
+@media (min-width: 901px) {
+  .banner {
+    /* box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.06); */
+    top: 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 275px;
+    width: 60%;
+    z-index: 1000;
+    max-width: 800px;
+    min-width: 400px;
+    background-color: white;
+  }
+  .nav-left-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 40px;
+    width: 50%;
+    margin-right: 5%;
+    margin-left: 5%;
+  }
+  .nav-right-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 40px;
+    width: 50%;
+    margin-right: 5%;
+    margin-left: 5%;
+  }
+  .nav {
+    top: 0;
+    background-color: white;
+    z-index: 10000;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90px;
+    width: 100%;
+  }
+  .banner-title {
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-size: 6rem;
+    margin-left: 75px;
+    max-width: 800px;
+    min-width: 400px;
+  }
+  .banner-sub {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
+    width: 50%;
+    margin-left: 75px;
+    max-width: 800px;
+    min-width: 400px;
+  }
+  .banner-wrap {
+    /* box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.06); */
+    margin-top: 90px;
+    display: flex;
+    flex-direction: row;
+    height: 275px;
+    width: 100%;
+    z-index: 1000;
+    background-color: white;
+  }
+}
 .search-icon {
   width: 26px;
   height: 26px;
@@ -247,72 +393,6 @@ a {
   color: #2c3e50;
   text-decoration: none;
 }
-.banner-title {
-  font-family: "Poppins", sans-serif;
-  font-weight: 700;
-  font-size: 6rem;
-  margin-left: 75px;
-  max-width: 800px;
-  min-width: 400px;
-}
-.banner-sub {
-  font-family: "Poppins", sans-serif;
-  font-weight: 500;
-  font-size: 1rem;
-  width: 50%;
-  margin-left: 75px;
-  max-width: 800px;
-  min-width: 400px;
-}
-.banner-wrap {
-  /* box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.06); */
-  margin-top: 90px;
-  display: flex;
-  flex-direction: row;
-  height: 275px;
-  width: 100%;
-  z-index: 1000;
-  background-color: white;
-}
-.banner-why {
-  /* box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.06); */
-  top: 90px;
-  display: flex;
-  /* flex-direction: column; */
-  justify-content: center;
-  align-items: center;
-  height: 275px;
-  width: 60%;
-  z-index: 1000;
-  max-width: 800px;
-  min-width: 400px;
-  background-color: white;
-}
-.banner {
-  /* box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.06); */
-  top: 90px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  height: 275px;
-  width: 60%;
-  z-index: 1000;
-  max-width: 800px;
-  min-width: 400px;
-  background-color: white;
-}
-.nav {
-  top: 0;
-  background-color: white;
-  z-index: 10000;
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 90px;
-  width: 100%;
-}
 .nav-item-one {
   text-align: right;
   font-family: "Poppins", sans-serif;
@@ -345,24 +425,7 @@ a {
   font-size: 16px;
   margin-right: 20px;
 }
-.nav-left-container {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  height: 40px;
-  width: 50%;
-  margin-right: 5%;
-  margin-left: 5%;
-}
-.nav-right-container {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  height: 40px;
-  width: 50%;
-  margin-right: 5%;
-  margin-left: 5%;
-}
+
 .square-btn {
   font-family: "Poppins", sans-serif;
   font-weight: 300;
