@@ -1,5 +1,5 @@
 <template>
-  <a :href="link" target="_blank">
+  <a :href="link" target="_blank" @click="handleClick(title)">
     <div class="card">
       <div class="nav-left-container">
         <img v-if="img" class="ad-img" :src="img" />
@@ -34,6 +34,16 @@ export default {
   methods: {
     dateString: function (date) {
       return formatDateDescription(date);
+    },
+    handleClick: function (title) {
+      // Your logic here to handle the click event
+      console.log("The <a> tag was clicked!");
+      this.$gtag.event("Job Click", {
+        event_category: "Jobs",
+        event_label: title,
+        value: title + "was clicked",
+      });
+      // You can perform any actions you want when the link is clicked
     },
   },
 };

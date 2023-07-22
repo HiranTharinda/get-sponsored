@@ -4,7 +4,7 @@
       <div class="nav-right-container">
         <router-link to="/"
           ><span class="nav-item"
-            ><span class="logo">GetSponsored</span></span
+            ><span class="logo">ukSponsored</span></span
           ></router-link
         >
         <router-link to="/companies">

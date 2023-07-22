@@ -2,7 +2,7 @@
   <div class="footer">
     <div class="footer-right-container">
       <span class="footer-item-one"
-        >© 2023 GetSponsored. All rights reserved.</span
+        >© 2023 ukSponsored. All rights reserved.</span
       >
     </div>
     <div class="footer-left-container">
