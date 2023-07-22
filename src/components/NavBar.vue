@@ -235,7 +235,7 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 275px;
+    height: 310px;
     width: 100%;
     z-index: 1000;
     background-color: white;

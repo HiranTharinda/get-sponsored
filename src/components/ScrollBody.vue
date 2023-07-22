@@ -4,6 +4,26 @@
       <div class="left-body"></div>
       <div class="mid-body">
         <ul class="job-u">
+          <div v-if="loading">
+            <Vue3Lottie
+              animation-link="https://lottie.host/afbbc643-51be-4be3-a95d-7baa151f2845/hRjcSitwrC.json"
+              :height="300"
+              :width="300"
+              :speed="0.5"
+              :loop="true"
+            />
+          </div>
+
+          <div class="no-resuls" v-else-if="!jobs.length">
+            <Vue3Lottie
+              animation-link="https://lottie.host/b1ba746b-9ca7-4e97-bc75-e2b4b962f7a1/qoTRGsZOnK.json"
+              :height="300"
+              :width="300"
+              :speed="0.5"
+              :loop="false"
+            />No jobs at the moment 😕, but we'll hustle to find more 🔍💪. Stay
+            tuned! 🎉
+          </div>
           <li v-for="job in jobs" :key="job.id">
             <AdCard
               :title="job.title"
@@ -133,6 +153,22 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+@media (max-width: 900px) {
+  .no-resuls {
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-size: 0.7rem;
+  }
+}
+@media (min-width: 900px) {
+  .no-resuls {
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-size: 0.7rem;
+  }
+}
 li:hover {
   box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.06);
 }
