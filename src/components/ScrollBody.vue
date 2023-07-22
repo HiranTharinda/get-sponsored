@@ -24,16 +24,32 @@
 
 <script>
 import AdCard from "./AdCard.vue";
-import { ref, computed, onMounted, watch } from "vue";
+import { ref, computed, onMounted, watch, reactive } from "vue";
 import { useRoute } from "vue-router";
 import { useStore } from "vuex";
-
+import { useHead } from "@vueuse/head";
 export default {
   name: "ScrollBody",
   components: {
     AdCard,
   },
   setup() {
+    const siteData = reactive({
+      title:
+        "UK Sponsored Jobs: Find Sponsorship Opportunities in Leading Companies Free",
+      description:
+        "Discover sponsored job opportunities in the UK from top companies for Free. uksponsored connects skilled professionals with companies offering sponsorships for a wide range of roles. Explore your career prospects with UK-based sponsorships now.",
+    });
+    useHead({
+      title: computed(() => siteData.title),
+      meta: [
+        {
+          name: `description`,
+          content: computed(() => siteData.description),
+        },
+      ],
+    });
+
     const route = useRoute();
     const store = useStore();
     const isHomeRoute = () => route.name === "Home";

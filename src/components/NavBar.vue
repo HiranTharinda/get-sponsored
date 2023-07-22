@@ -90,8 +90,8 @@ export default {
     const isWhyRoute = () => route.name === "Why";
     const fTotal = computed(() => store.state.filteredTotal);
     const companiesCount = computed(() => store.state.companiesCount);
-    const c_counter = ref(0);
-    const f_counter = ref(0);
+    const c_counter = ref(companiesCount.value - 20);
+    const f_counter = ref(fTotal.value - 20);
     const searchText = ref("");
 
     const handleSearch = () => {
@@ -121,8 +121,8 @@ export default {
     };
 
     const stopCounting = () => {
-      f_counter.value = 0;
-      c_counter.value = 0;
+      f_counter.value = fTotal.value - 20;
+      c_counter.value = companiesCount.value - 20;
     };
 
     watch(store.state.title, (newTitle) => {

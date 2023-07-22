@@ -79,9 +79,27 @@
 <script>
 import { debounce } from "lodash";
 import companies from "@/assets/company-list.json";
-
+import { useHead } from "@vueuse/head";
+import { computed, reactive } from "vue";
 export default {
   name: "CompanySponsor",
+  setup() {
+    const siteData = reactive({
+      title:
+        "UK Companies Offering Sponsorship Opportunities: Find Your Ideal Sponsorship For Free | UKSponsored",
+      description:
+        "Explore a comprehensive list of leading UK companies that provide sponsorship opportunities. Use our convenient search function to find companies that sponsor foreign talent. Take the next step in your career with UKSponsored.",
+    });
+    useHead({
+      title: computed(() => siteData.title),
+      meta: [
+        {
+          name: `description`,
+          content: computed(() => siteData.description),
+        },
+      ],
+    });
+  },
   data() {
     return {
       found: false,

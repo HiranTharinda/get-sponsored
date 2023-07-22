@@ -31,8 +31,27 @@
 </template>
 
 <script>
+import { useHead } from "@vueuse/head";
+import { computed, reactive } from "vue";
 export default {
   name: "WhyDoThis",
+  setup() {
+    const siteData = reactive({
+      title:
+        "Free UK Sponsorship Opportunities: Learn Why UKSponsored Offers Free Services",
+      description:
+        "Discover the reasons behind UKSponsored's commitment to providing free sponsorship opportunity services in the UK. Learn how our platform connects job seekers with sponsorships from top companies without any charges, empowering career growth for all.",
+    });
+    useHead({
+      title: computed(() => siteData.title),
+      meta: [
+        {
+          name: `description`,
+          content: computed(() => siteData.description),
+        },
+      ],
+    });
+  },
 };
 </script>
 
