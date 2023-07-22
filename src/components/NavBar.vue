@@ -64,7 +64,9 @@
       </div>
 
       <div v-if="isWhyRoute()" class="banner-why">
-        <span class="banner-title">WhyDoThis</span>
+        <span class="banner-title-why">Why</span>
+        <span class="banner-title-why">Do</span>
+        <span class="banner-title-why">This</span>
       </div>
       <div v-if="isCompaniesRoute()" class="banner">
         <span class="banner-title">Companies</span>
@@ -185,6 +187,12 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 @media (max-width: 900px) {
+  .banner-title-why {
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-size: 5rem;
+    height: 70px;
+  }
   .nav {
     top: 0;
     background-color: white;
@@ -252,8 +260,39 @@ export default {
     /* width: 60%; */
     z-index: 1000;
   }
+  .banner-why {
+    /* box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.06); */
+    margin-top: -30px;
+    margin-bottom: 51px;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 275px;
+    /* width: 60%; */
+    z-index: 1000;
+  }
 }
 @media (min-width: 901px) {
+  .banner-why {
+    /* box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.06); */
+    margin-top: -30px;
+    margin-bottom: 51px;
+    display: flex;
+    text-align: center;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 275px;
+    /* width: 60%; */
+    z-index: 1000;
+  }
+  .banner-title-why {
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-size: 5rem;
+  }
   .banner {
     /* box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.06); */
     top: 90px;
@@ -319,6 +358,7 @@ export default {
     margin-top: 90px;
     display: flex;
     flex-direction: row;
+    justify-content: center;
     height: 275px;
     width: 100%;
     z-index: 1000;
