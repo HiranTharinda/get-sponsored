@@ -44,14 +44,13 @@
             with utmost confidence. 🎉💪
           </p>
         </span>
-        <div v-if="showAnimation">
+        <div class="congrats" v-if="showAnimation">
           <Vue3Lottie
             animation-link="https://lottie.host/0d77095e-7863-4f5e-9b5c-9982c0d2b6ea/vW6eNpKaBQ.json"
             :height="300"
             :width="300"
             :speed="0.5"
             :loop="false"
-            @onComplete="onAnimationComplete"
           />
         </div>
       </div>
@@ -131,7 +130,7 @@ export default {
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    top: 470px;
+    top: 438px;
     position: absolute;
     overflow-y: auto;
     border-radius: 40px;
@@ -159,7 +158,7 @@ export default {
     max-width: 800px;
     min-width: 330px;
     background-color: white;
-    margin-top: 15px;
+    margin-top: -25px;
   }
 }
 @media (min-width: 901px) {
@@ -170,7 +169,7 @@ export default {
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    top: 480px;
+    top: 416px;
     position: absolute;
     overflow-y: auto;
     border-radius: 40px;
@@ -201,8 +200,11 @@ export default {
     max-width: 800px;
     min-width: 400px;
     background-color: white;
-    margin-top: 15px;
+    margin-top: -37px;
   }
+}
+.congrats {
+  margin-top: -82px;
 }
 .suggestion {
   padding: 5px;
@@ -254,7 +256,7 @@ li:hover {
   font-size: 1rem;
   width: 50%;
   max-width: 800px;
-  min-width: 400px;
+  min-width: 275px;
 }
 .banner {
   /* box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.06); */

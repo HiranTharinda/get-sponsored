@@ -226,7 +226,7 @@ export default {
     font-family: "Poppins", sans-serif;
     font-weight: 500;
     font-size: 1rem;
-    width: 50%;
+    width: 80%;
   }
   .banner-wrap {
     /* box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.06); */
@@ -425,7 +425,6 @@ a {
 .logo {
   font-family: "Lobster", cursive;
   font-size: 1rem;
-  margin-right: 20px;
 }
 
 .square-btn {
