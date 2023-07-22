@@ -21,8 +21,11 @@
               :width="300"
               :speed="0.5"
               :loop="false"
-            />No jobs at the moment 😕, but we'll hustle to find more 🔍💪. Stay
-            tuned! 🎉
+            />
+            <span class="no-result-text">
+              <p>No jobs at the moment. 😕 But we'll hustle to find more.</p>
+              <p>🔍💪 Stay tuned! 🎉</p>
+            </span>
           </div>
           <li v-for="job in jobs" :key="job.id">
             <AdCard
@@ -154,11 +157,22 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 @media (max-width: 900px) {
+  .no-result-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+  }
   .no-resuls {
     text-align: center;
     font-family: "Poppins", sans-serif;
     font-weight: 500;
     font-size: 0.7rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 }
 @media (min-width: 900px) {
@@ -167,6 +181,10 @@ export default {
     font-family: "Poppins", sans-serif;
     font-weight: 500;
     font-size: 0.7rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 }
 li:hover {
@@ -224,6 +242,7 @@ li:hover {
 ul {
   list-style-type: none;
   padding: 0;
+  height: 100vh;
   margin-right: 10px;
 }
 li {

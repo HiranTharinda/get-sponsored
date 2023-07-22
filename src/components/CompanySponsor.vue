@@ -36,6 +36,14 @@
             Hmm... Seems like they are not here yet!.🤔
           </div>
         </div>
+      </div>
+      <div v-if="found" class="banner">
+        <span class="banner-sub"
+          ><p>
+            Congratulations, you've discovered the perfect match! Time to apply
+            with utmost confidence. 🎉💪
+          </p>
+        </span>
         <div v-if="showAnimation">
           <Vue3Lottie
             animation-link="https://lottie.host/0d77095e-7863-4f5e-9b5c-9982c0d2b6ea/vW6eNpKaBQ.json"
@@ -46,31 +54,6 @@
             @onComplete="onAnimationComplete"
           />
         </div>
-      </div>
-      <div v-if="found" class="banner">
-        <span class="banner-sub"
-          ><p>
-            Hey there, international students and expats! 🌏✈️ If you're looking
-            for a job in the UK, let's talk about the current job market
-            situation. It's a bit of a challenge to find jobs that offer
-            sponsorship on regular job boards. 🧭 But when you do manage to find
-            one, it's like hitting the jackpot! 💼🎉 Getting sponsored means you
-            can work and live your dream in the UK hassle-free!
-          </p>
-          <p>
-            On the other hand, applying for non-sponsoring jobs can be a bit of
-            a time-waster. ⏳ So, let's focus on what really matters – finding
-            those rare sponsored opportunities that match your skills and
-            ambitions! It's worth the effort, and we'll help you get there! 💪
-          </p>
-          <p>
-            Stay determined, stay positive, and let's crack the code together!
-            🚀🔍
-          </p>
-          <p>
-            #InternationalOpportunities #UKJobSearch #SponsoredDreams 🌟
-          </p></span
-        >
       </div>
     </div>
   </div>
@@ -140,6 +123,95 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+@media (max-width: 900px) {
+  #suggestions-container {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    top: 470px;
+    position: absolute;
+    overflow-y: auto;
+    border-radius: 40px;
+    min-width: 330px;
+    width: 40%;
+    background-color: #fff;
+    overflow-y: "hidden";
+    overflow-x: "hidden";
+  }
+  .suggestions-container::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+  }
+
+  .filters {
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.06);
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    height: 48px;
+    border-radius: 40px;
+    width: 40%;
+    z-index: 1000;
+    border: 3px;
+    max-width: 800px;
+    min-width: 330px;
+    background-color: white;
+    margin-top: 15px;
+  }
+}
+@media (min-width: 901px) {
+  #suggestions-container {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    top: 480px;
+    position: absolute;
+    overflow-y: auto;
+    border-radius: 40px;
+    min-width: 400px;
+    max-width: 800px;
+    width: 40%;
+    background-color: #fff;
+    overflow-y: "hidden";
+    overflow-x: "hidden";
+  }
+  .suggestions-container::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+  }
+
+  /* Style for individual suggestion items */
+
+  .filters {
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.06);
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    height: 72px;
+    border-radius: 40px;
+    width: 40%;
+    z-index: 1000;
+    border: 3px;
+    max-width: 800px;
+    min-width: 400px;
+    background-color: white;
+    margin-top: 15px;
+  }
+}
+.suggestion {
+  padding: 5px;
+  padding-left: 34px;
+  padding-right: 34px;
+  margin-left: 44px;
+  cursor: pointer;
+  border-radius: 18px;
+}
 li:hover {
   box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.06);
 }
@@ -197,24 +269,9 @@ li:hover {
   max-width: 800px;
   min-width: 400px;
 }
-.filters {
-  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.06);
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  height: 96px;
-  border-radius: 40px;
-  width: 40%;
-  z-index: 1000;
-  border: 3px;
-  max-width: 800px;
-  min-width: 400px;
-  background-color: white;
-  margin-top: 15px;
-}
+
 input {
-  width: 300px;
+  width: 200px;
   padding: 5px;
   border: 0px;
   border-radius: 5px;
@@ -224,42 +281,6 @@ input {
 input:focus {
   outline: none;
 }
-
-/* Style for the suggestions container */
-#suggestions-container {
-  padding-top: 20px;
-  padding-bottom: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  top: 495px;
-  position: absolute;
-  overflow-y: auto;
-  border-radius: 40px;
-  min-width: 400px;
-  max-width: 800px;
-  width: 40%;
-  background-color: #fff;
-  overflow-y: "hidden";
-  overflow-x: "hidden";
-}
-.suggestions-container::-webkit-scrollbar {
-  display: none; /* Safari and Chrome */
-}
-
-/* Style for individual suggestion items */
-.suggestion {
-  max-width: 800px;
-  min-width: 400px;
-  padding: 5px;
-  padding-left: 34px;
-  padding-right: 34px;
-  margin-left: 44px;
-  cursor: pointer;
-  border-radius: 18px;
-}
-
 .suggestion:hover {
   background-color: #f2f2f2;
 }

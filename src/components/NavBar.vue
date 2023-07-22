@@ -2,16 +2,18 @@
   <div class="nav-wrapper">
     <div class="nav">
       <div class="nav-right-container">
+        <router-link to="/why">
+          <span class="nav-item-two">Why</span></router-link
+        >
         <router-link to="/"
           ><span class="nav-item"
-            ><span class="logo">ukSponsored</span></span
+            ><span class="logo"
+              ><span class="logo-uk">UK</span>Sponsored</span
+            ></span
           ></router-link
         >
         <router-link to="/companies">
           <span class="nav-item-one">Companies</span></router-link
-        >
-        <router-link to="/why">
-          <span class="nav-item-two">Why</span></router-link
         >
       </div>
 
@@ -67,8 +69,8 @@
       <div v-if="isCompaniesRoute()" class="banner">
         <span class="banner-title">Companies</span>
         <span class="banner-sub"
-          >You've got a dream job in mind? 🌟 Let's find out if that awesome
-          company is legit to sponsor you! 💼💼 Time to play detective!🕵️‍♂️</span
+          >You've got a dream company in mind? 🌟💼 Time to play
+          detective!🕵️‍♂️</span
         >
       </div>
       <div class="right-body"></div>
@@ -216,7 +218,7 @@ export default {
   .banner-title {
     font-family: "Poppins", sans-serif;
     font-weight: 700;
-    font-size: 4rem;
+    font-size: 3rem;
     max-width: 800px;
     min-width: 400px;
   }
@@ -225,9 +227,6 @@ export default {
     font-weight: 500;
     font-size: 1rem;
     width: 50%;
-
-    max-width: 800px;
-    min-width: 400px;
   }
   .banner-wrap {
     /* box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.06); */
@@ -252,8 +251,6 @@ export default {
     height: 275px;
     /* width: 60%; */
     z-index: 1000;
-    max-width: 800px;
-    min-width: 400px;
   }
 }
 @media (min-width: 901px) {
@@ -376,6 +373,11 @@ input:focus {
   height: 100%;
   width: 30%;
 }
+.logo-uk {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 0.8rem;
+}
 span.f_count {
   font-family: "Poppins", sans-serif;
   font-weight: 200;
@@ -397,7 +399,7 @@ a {
   text-align: right;
   font-family: "Poppins", sans-serif;
   font-weight: 300;
-  font-size: 12px;
+  font-size: 0.8rem;
   width: 49px;
   margin-left: 20px;
   margin-right: 20px;
@@ -406,7 +408,7 @@ a {
   text-align: left;
   font-family: "Poppins", sans-serif;
   font-weight: 300;
-  font-size: 12px;
+  font-size: 0.8rem;
   width: 100px;
   margin-left: 20px;
   margin-right: 20px;
@@ -422,7 +424,7 @@ a {
 }
 .logo {
   font-family: "Lobster", cursive;
-  font-size: 16px;
+  font-size: 1rem;
   margin-right: 20px;
 }
 

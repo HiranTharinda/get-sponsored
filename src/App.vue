@@ -24,10 +24,18 @@ export default {
   text-align: left;
   color: #2c3e50;
 }
-body {
-  background-image: url("./assets/bg.jpg");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
+
+@media (max-width: 501px) {
+  body {
+    background-color: white;
+  }
+}
+@media (min-width: 501px) {
+  body {
+    background-image: url("./assets/bg.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+  }
 }
 </style>

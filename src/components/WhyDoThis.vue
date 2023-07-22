@@ -89,7 +89,7 @@ li:hover {
   font-size: 1rem;
   width: 50%;
   max-width: 800px;
-  min-width: 400px;
+  min-width: 300px;
 }
 .banner {
   /* box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.06); */
