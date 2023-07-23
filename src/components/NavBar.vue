@@ -28,7 +28,6 @@
             role="img"
             class="search-icon"
             @click="handleSearch"
-            @keyup.enter="handleSearch"
             style="cursor: pointer"
           >
             <path
@@ -49,10 +48,10 @@
     <div class="banner-wrap">
       <div class="left-body">
         <span v-if="isHomeRoute()" class="f_count">
-          {{ f_counter }}
+          <CounterDigit :value="fTotal" :home="isHomeRoute()" />
         </span>
         <span v-if="isCompaniesRoute()" class="f_count">
-          {{ c_counter }}K
+          <CounterDigit :value="companiesCount" :home="isHomeRoute()" />
         </span>
       </div>
       <div v-if="isHomeRoute()" class="banner">
@@ -81,11 +80,15 @@
 </template>
 
 <script>
-import { ref, computed, onMounted, watch, onBeforeUnmount } from "vue";
+import { ref, computed } from "vue";
+import CounterDigit from "./CounterDigit.vue";
 import { useStore } from "vuex";
 import { useRoute } from "vue-router";
 export default {
   name: "NavBar",
+  components: {
+    CounterDigit,
+  },
   setup() {
     const route = useRoute();
     const store = useStore();
@@ -94,88 +97,20 @@ export default {
     const isWhyRoute = () => route.name === "Why";
     const fTotal = computed(() => store.state.filteredTotal);
     const companiesCount = computed(() => store.state.companiesCount);
-    const c_counter = ref(companiesCount.value - 20);
-    const f_counter = ref(fTotal.value - 20);
     const searchText = ref("");
 
     const handleSearch = () => {
-      console.log(searchText.value);
+      store.commit("setPaginated", null);
       store.dispatch("resetData");
       store.commit("updateTitle", searchText.value);
-      console.log(store);
     };
-
-    // Watch for changes in the store title and update the local searchText ref
-
-    // Function to update the counter with the desired number
-    const updateCounter = () => {
-      // Increase the counter value by a step (adjust the step as desired)
-      if (isHomeRoute()) {
-        f_counter.value += 1;
-        if (f_counter.value < fTotal.value) {
-          setTimeout(updateCounter, 20); // Adjust the delay (in milliseconds) for the speed of counting
-        }
-      }
-      if (isCompaniesRoute()) {
-        c_counter.value += 1;
-        if (c_counter.value < companiesCount.value) {
-          setTimeout(updateCounter, 20); // Adjust the delay (in milliseconds) for the speed of counting
-        }
-      }
-    };
-
-    const stopCounting = () => {
-      f_counter.value = fTotal.value - 20;
-      c_counter.value = companiesCount.value - 20;
-    };
-
-    watch(store.state.title, (newTitle) => {
-      searchText.value = newTitle;
-    });
-
-    watch(fTotal, (oldfTotal, newfTotal) => {
-      if (oldfTotal !== newfTotal) {
-        f_counter.value = 0; // Reset the counter to 0
-        updateCounter(); // Start the counting effect again
-      }
-    });
-    // Watch for route changes and start counting
-    watch(
-      () => route.name,
-      () => {
-        stopCounting();
-        updateCounter();
-      }
-    );
-    // Watch for changes in fTotal and companiesCount and reset counters
-    watch(
-      [fTotal, companiesCount],
-      ([newFTotal, newCompaniesCount], [oldFTotal, oldCompaniesCount]) => {
-        if (
-          newFTotal !== oldFTotal ||
-          newCompaniesCount !== oldCompaniesCount
-        ) {
-          stopCounting();
-        }
-      }
-    );
-
-    // Fetch initial data when the component is mounted
-    onMounted(() => {
-      updateCounter();
-    });
-
-    // Clean up the counters when the component is unmounted
-    onBeforeUnmount(() => {
-      stopCounting();
-    });
 
     return {
       searchText,
       handleSearch,
       route,
-      f_counter,
-      c_counter,
+      fTotal,
+      companiesCount,
       isHomeRoute,
       isCompaniesRoute,
       isWhyRoute,
@@ -475,6 +410,26 @@ a {
   width: 100px;
   height: 40px;
   color: white;
+}
+.counter {
+  display: inline-flex;
+  font-size: 36px;
+}
+
+.digit {
+  position: relative;
+  margin-right: 5px;
+}
+
+.animation-container {
+  overflow: hidden;
+  height: 40px;
+}
+
+.number {
+  position: absolute;
+  transition: top 0.4s ease-in-out;
+  top: 0;
 }
 h3 {
   margin: 40px 0 0;

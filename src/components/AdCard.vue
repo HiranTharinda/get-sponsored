@@ -6,9 +6,9 @@
         <img v-else class="ad-img" src="@/assets/company.png" />
       </div>
       <div class="nav-right-container">
-        <span class="ad-title">{{ title }}</span>
-        <span class="ad-company">{{ company }}</span>
-        <span class="ad-location">{{ location }}</span>
+        <span class="ad-title">{{ truncatedTitle }}</span>
+        <span class="ad-company">{{ truncatedCompany }}</span>
+        <span class="ad-location">{{ truncatedLocation }}</span>
         <span v-if="salary" class="ad-salary">{{ salary }}</span>
         <span v-else class="ad-salary-no">{{ "NOT PROVIDED" }}</span>
         <span class="ad-date">{{ dateString(date) }}</span>
@@ -30,14 +30,34 @@ export default {
     date: String,
     salary: String,
   },
-
+  data() {
+    return {
+      screenWidth: window.innerWidth,
+    };
+  },
+  computed: {
+    truncatedTitle() {
+      return this.limitString(this.title, 25);
+    },
+    truncatedCompany() {
+      return this.limitString(this.company, 30);
+    },
+    truncatedLocation() {
+      return this.limitString(this.location, 40);
+    },
+  },
   methods: {
     dateString: function (date) {
       return formatDateDescription(date);
     },
+    limitString: function (str, maxLength) {
+      if (str.length > maxLength && this.screenWidth < 900) {
+        return str.slice(0, maxLength - 3) + "...";
+      }
+      return str;
+    },
     handleClick: function (title) {
       // Your logic here to handle the click event
-      console.log("The <a> tag was clicked!");
       this.$gtag.event("Job Click", {
         event_category: "Jobs",
         event_label: title,
@@ -45,9 +65,19 @@ export default {
       });
       // You can perform any actions you want when the link is clicked
     },
+    updateScreenSize() {
+      this.screenWidth = window.innerWidth;
+    },
+  },
+  mounted() {
+    window.addEventListener("resize", this.updateScreenSize);
+  },
+  beforeUnmount() {
+    window.removeEventListener("resize", this.updateScreenSize);
   },
 };
 </script>
+
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
@@ -118,7 +148,6 @@ img {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  margin-left: 20px;
   height: 120px;
   width: 70%;
 }

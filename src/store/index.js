@@ -3,9 +3,10 @@ import axios from "axios";
 const store = createStore({
     state: {
         title: "",
-        total: 0,
-        filteredTotal: 0,
-        companiesCount: 71,
+        total: null,
+        filteredTotal: null,
+        paginated: null,
+        companiesCount: '71K',
         data: [], // This will store the job data fetched from the API
     },
     mutations: {
@@ -20,6 +21,9 @@ const store = createStore({
         },
         setTotal(state, total) {
             state.total = total;
+        },
+        setPaginated(state, paginated) {
+            state.paginated = paginated;
         },
         setFilteredTotal(state, filteredTotal) {
             state.filteredTotal = filteredTotal;
@@ -37,12 +41,13 @@ const store = createStore({
                     .then((response) => {
                         const data = response.data;
                         commit("addData", data.paginated_jobs);
+                        commit("setTotal", data.total_jobs);
+                        commit("setPaginated", data.paginated_jobs.length);
                         commit("setFilteredTotal", data.no_filtered_jobs);
                         commit("setTotal", data.total_jobs);
                         resolve(data);
                     })
                     .catch((error) => {
-                        console.error(error);
                         reject(error);
                     });
             });

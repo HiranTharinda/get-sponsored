@@ -5,26 +5,37 @@
         <span class="banner-sub"
           ><p>
             Hey there, international students and expats! 🌏✈️ If you're looking
-            for a job in the UK, let's talk about the current job market
-            situation. It's a bit of a challenge to find jobs that offer
-            sponsorship on regular job boards. 🧭 But when you do manage to find
-            one, it's like hitting the jackpot! 💼🎉 Getting sponsored means you
-            can work and live your dream in the UK hassle-free!
+            for a job in the UK, we know the struggle is real. Finding jobs that
+            offer sponsorship on regular job boards can be quite a challenge. 🧭
+            But when you do manage to find one, it's like hitting the jackpot!
+            💼🎉
           </p>
           <p>
-            On the other hand, applying for non-sponsoring jobs can be a bit of
-            a time-waster. ⏳ So, let's focus on what really matters – finding
-            those rare sponsored opportunities that match your skills and
-            ambitions! It's worth the effort, and we'll help you get there! 💪
+            Getting sponsored means you can work and live your dream in the UK
+            hassle-free! We get it, applying for non-sponsoring jobs can be a
+            bit of a time-waster. ⏳ So, let's cut through the noise and focus
+            on what really matters – finding those rare sponsored opportunities
+            that match your skills and ambitions! It's worth the effort, and
+            we'll be your partner in this journey. 💪
           </p>
+          <p>
+            At our awesome free website, we've done all the heavy lifting to
+            bring you the latest and greatest job openings from companies with
+            sponsorship licenses. 🌟 All our listings are legit and verified, so
+            you can trust that you're getting genuine opportunities. By the way,
+            did you know there are more than 1.2 million job seekers coming to
+            the UK each year? You're not alone on this adventure!
+          </p>
+
           <p>
             Stay determined, stay positive, and let's crack the code together!
-            🚀🔍
+            🚀🌟 Your dream job in the UK awaits you, and we're here to make it
+            happen. Let's soar to new heights and build an amazing career
+            journey together! 🚀💼💫
           </p>
-          <p>
-            #InternationalOpportunities #UKJobSearch #SponsoredDreams 🌟
-          </p></span
-        >
+
+          <p>#InternationalOpportunities #UKJobSearch #SponsoredDreams 🌟</p>
+        </span>
       </div>
     </div>
   </div>
@@ -88,6 +99,7 @@ li:hover {
   font-weight: 500;
   font-size: 1rem;
   width: 50%;
+  margin-bottom: 100px;
   max-width: 800px;
   min-width: 300px;
 }

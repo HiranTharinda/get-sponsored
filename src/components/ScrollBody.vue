@@ -3,7 +3,7 @@
     <div class="scroll-body">
       <div class="left-body"></div>
       <div class="mid-body">
-        <ul class="job-u">
+        <ul class="job-u" @scroll="onScroll">
           <div v-if="loading">
             <Vue3Lottie
               animation-link="https://lottie.host/afbbc643-51be-4be3-a95d-7baa151f2845/hRjcSitwrC.json"
@@ -38,6 +38,18 @@
               :salary="job.salary"
             />
           </li>
+          <div class="loading-more" v-if="!hasLoadedAllDataRef">
+            <Vue3Lottie
+              animation-link="https://lottie.host/afbbc643-51be-4be3-a95d-7baa151f2845/hRjcSitwrC.json"
+              :height="100"
+              :width="100"
+              :speed="0.5"
+              :loop="true"
+            />
+          </div>
+          <div class="loading-more" v-else>
+            <p>That's all for now.😊</p>
+          </div>
         </ul>
       </div>
       <div class="right-body"></div>
@@ -78,13 +90,15 @@ export default {
     const isHomeRoute = () => route.name === "Home";
     const jobs = computed(() => store.state.data);
     const title = computed(() => store.state.title);
+    const paginated = computed(() => store.state.paginated);
+    const hasLoadedAllDataRef = ref(false);
     const loading = ref(true);
     const offset = ref(0);
     const limit = 10;
-
     // Function to fetch more data and append it to the jobs array
     const fetchMoreData = () => {
       if (isHomeRoute()) {
+        loading.value = true;
         store
           .dispatch("fetchData", {
             title: title.value,
@@ -94,6 +108,8 @@ export default {
           .then(() => {
             offset.value += limit;
             loading.value = false;
+            // Update hasLoadedAllData based on paginated value
+            hasLoadedAllDataRef.value = paginated.value === 0;
           })
           .catch((error) => {
             console.error(error);
@@ -103,24 +119,12 @@ export default {
     };
 
     // Function to check if the user has reached the bottom of the page
-    const handleScroll = () => {
-      const windowHeight =
-        "innerHeight" in window
-          ? window.innerHeight
-          : document.documentElement.offsetHeight;
-      const body = document.body;
-      const html = document.documentElement;
-      const docHeight = Math.max(
-        body.scrollHeight,
-        body.offsetHeight,
-        html.clientHeight,
-        html.scrollHeight,
-        html.offsetHeight
-      );
-      const windowBottom = windowHeight + window.pageYOffset;
-
-      if (windowBottom >= docHeight) {
-        // User has reached the bottom, load more data
+    const onScroll = (e) => {
+      const { scrollTop, offsetHeight, scrollHeight } = e.target;
+      if (
+        scrollTop + offsetHeight >= scrollHeight &&
+        !hasLoadedAllDataRef.value
+      ) {
         fetchMoreData();
       }
     };
@@ -135,9 +139,6 @@ export default {
     });
 
     // Add an event listener for the scroll event on the window object
-    onMounted(() => {
-      window.addEventListener("scroll", handleScroll);
-    });
 
     // Fetch initial data when the component is mounted
     onMounted(() => {
@@ -146,10 +147,8 @@ export default {
 
     // Clean up the event listener when the component is about to be unmounted
     // This is important to avoid memory leaks when the component is removed from the DOM
-    const cleanup = () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-    return { jobs, loading, cleanup };
+
+    return { jobs, loading, onScroll, hasLoadedAllDataRef };
   },
 };
 </script>
@@ -174,9 +173,49 @@ export default {
     justify-content: center;
     align-items: center;
   }
+  .loading-more {
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-size: 0.7rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .end-results {
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-size: 0.7rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }
 @media (min-width: 900px) {
   .no-resuls {
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-size: 0.7rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .loading-more {
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-size: 0.7rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .end-results {
     text-align: center;
     font-family: "Poppins", sans-serif;
     font-weight: 500;
@@ -244,10 +283,15 @@ ul {
   padding: 0;
   height: 100vh;
   margin-right: 10px;
+  margin-bottom: 140px;
+  overflow-y: auto;
+}
+ul::-webkit-scrollbar {
+  width: 0 !important;
 }
 li {
   display: inline-block;
-  margin: 0 10px;
+  margin: 8px 10px;
   width: 100%;
 }
 </style>
