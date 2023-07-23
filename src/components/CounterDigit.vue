@@ -1,5 +1,5 @@
 <template>
-  <div>{{ displayValue }}</div>
+  <div class="value-count">{{ displayValue }}</div>
   <div class="count-sub" v-if="isHome">
     <span class="count-sub">Jobs in United Kingdom</span>
   </div>
@@ -40,6 +40,12 @@ export default {
 </script>
 
 <style scoped>
+.value-count {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .digit {
   position: relative;
   margin-right: 5px;
@@ -49,6 +55,11 @@ export default {
   animation: bounce 0.5s ease-in-out;
 }
 div.count-sub {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   font-family: "Poppins", sans-serif;
   font-weight: 200;
   font-size: 0.7rem;
@@ -59,6 +70,7 @@ span.count-sub {
   font-family: "Poppins", sans-serif;
   font-weight: 300;
   font-size: 0.86rem;
+  text-align: center;
 }
 @keyframes bounce {
   0% {
