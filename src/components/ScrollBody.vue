@@ -118,6 +118,18 @@ export default {
       }
     };
 
+    const scrollToPosition = (pos, time) => {
+      setTimeout(() => {
+        // Scroll the main page (whole window) to the desired position
+        if (isHomeRoute()) {
+          window.scrollTo({
+            top: pos,
+            behavior: "smooth", // Add smooth scrolling effect
+          });
+        }
+      }, time); // 3000 milliseconds = 3 seconds (adjust the time as per your requirement)
+    };
+
     // Function to check if the user has reached the bottom of the page
     const onScroll = (e) => {
       const { scrollTop, offsetHeight, scrollHeight } = e.target;
@@ -143,6 +155,12 @@ export default {
     // Fetch initial data when the component is mounted
     onMounted(() => {
       fetchMoreData();
+
+      if (window.innerWidth < 500) {
+        scrollToPosition(300, 3000);
+      } else {
+        scrollToPosition(0, 0);
+      }
     });
 
     // Clean up the event listener when the component is about to be unmounted

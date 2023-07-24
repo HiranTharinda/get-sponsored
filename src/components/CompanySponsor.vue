@@ -62,7 +62,7 @@
 import { debounce } from "lodash";
 import companies from "@/assets/company-list.json";
 import { useHead } from "@vueuse/head";
-import { computed, reactive } from "vue";
+import { computed, reactive, onMounted } from "vue";
 export default {
   name: "CompanySponsor",
   setup() {
@@ -80,6 +80,16 @@ export default {
           content: computed(() => siteData.description),
         },
       ],
+    });
+    const scrollToPosition = () => {
+      // Scroll the main page (whole window) to the desired position
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth", // Add smooth scrolling effect
+      });
+    };
+    onMounted(() => {
+      scrollToPosition();
     });
   },
   data() {
