@@ -41,19 +41,22 @@
     </div>
   </div>
 </template>
-
-<script>
+<script lang="ts">
+import { defineComponent, computed, reactive, onMounted } from "vue";
 import { useHead } from "@vueuse/head";
-import { computed, reactive, onMounted } from "vue";
-export default {
+
+export default defineComponent({
   name: "WhyDoThis",
   setup() {
+    // Reactive site data object
     const siteData = reactive({
       title:
         "Free UK Sponsorship Opportunities: Learn Why UKSponsored Offers Free Services",
       description:
         "Discover the reasons behind UKSponsored's commitment to providing free sponsorship opportunity services in the UK. Learn how our platform connects job seekers with sponsorships from top companies without any charges, empowering career growth for all.",
     });
+
+    // Use the @vueuse/head plugin to update the page title and description
     useHead({
       title: computed(() => siteData.title),
       meta: [
@@ -64,6 +67,7 @@ export default {
       ],
     });
 
+    // Function to scroll to the top of the page
     const scrollToPosition = () => {
       // Scroll the main page (whole window) to the desired position
       window.scrollTo({
@@ -71,11 +75,13 @@ export default {
         behavior: "smooth", // Add smooth scrolling effect
       });
     };
+
+    // Call the scrollToPosition function when the component is mounted
     onMounted(() => {
       scrollToPosition();
     });
   },
-};
+});
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -90,14 +96,6 @@ li:hover {
   align-items: center;
   height: 80vh;
   width: 100%;
-}
-.banner-title {
-  font-family: "Poppins", sans-serif;
-  font-weight: 700;
-  font-size: 6rem;
-  margin-left: 75px;
-  max-width: 800px;
-  min-width: 400px;
 }
 .companies {
   display: flex;

@@ -57,24 +57,28 @@
   </div>
 </template>
 
-<script>
-import AdCard from "./AdCard.vue";
-import { ref, computed, onMounted, watch, reactive } from "vue";
+<script lang="ts">
+import { defineComponent, ref, computed, onMounted, watch, reactive } from "vue";
 import { useRoute } from "vue-router";
 import { useStore } from "vuex";
 import { useHead } from "@vueuse/head";
-export default {
+import AdCard from "../components/AdCard.vue";
+
+export default defineComponent({
   name: "ScrollBody",
   components: {
     AdCard,
   },
   setup() {
+    // Reactive site data object
     const siteData = reactive({
       title:
         "UK Sponsored Jobs: Find Sponsorship Opportunities in Leading Companies Free",
       description:
         "Discover sponsored job opportunities in the UK from top companies for Free. uksponsored connects skilled professionals with companies offering sponsorships for a wide range of roles. Explore your career prospects with UK-based sponsorships now.",
     });
+
+    // Use the @vueuse/head plugin to update the page title and description
     useHead({
       title: computed(() => siteData.title),
       meta: [
@@ -85,16 +89,24 @@ export default {
       ],
     });
 
+    // Vue Router and Vuex Store
     const route = useRoute();
     const store = useStore();
+
+    // Helper function to check if the current route is the Home route
     const isHomeRoute = () => route.name === "Home";
+
+    // Computed properties derived from the Vuex store state
     const jobs = computed(() => store.state.data);
     const title = computed(() => store.state.title);
     const paginated = computed(() => store.state.paginated);
+
+    // Reactive variables and refs
     const hasLoadedAllDataRef = ref(false);
     const loading = ref(true);
     const offset = ref(0);
     const limit = 10;
+
     // Function to fetch more data and append it to the jobs array
     const fetchMoreData = () => {
       if (isHomeRoute()) {
@@ -118,9 +130,9 @@ export default {
       }
     };
 
-    const scrollToPosition = (pos, time) => {
+    // Function to scroll to a specific position
+    const scrollToPosition = (pos: number, time: number) => {
       setTimeout(() => {
-        // Scroll the main page (whole window) to the desired position
         if (isHomeRoute()) {
           window.scrollTo({
             top: pos,
@@ -130,17 +142,15 @@ export default {
       }, time); // 3000 milliseconds = 3 seconds (adjust the time as per your requirement)
     };
 
-    // Function to check if the user has reached the bottom of the page
-    const onScroll = (e) => {
-      const { scrollTop, offsetHeight, scrollHeight } = e.target;
-      if (
-        scrollTop + offsetHeight >= scrollHeight &&
-        !hasLoadedAllDataRef.value
-      ) {
+    // Function to handle the scroll event
+    const onScroll = (e: Event) => {
+      const { scrollTop, offsetHeight, scrollHeight } = e.target as HTMLElement;
+      if (scrollTop + offsetHeight >= scrollHeight && !hasLoadedAllDataRef.value) {
         fetchMoreData();
       }
     };
 
+    // Watch for changes in the title and fetch new data accordingly
     watch(title, (newTitle, oldTitle) => {
       if (newTitle !== oldTitle) {
         // Reset the offset and fetch new data based on the updated title
@@ -150,12 +160,11 @@ export default {
       }
     });
 
-    // Add an event listener for the scroll event on the window object
-
     // Fetch initial data when the component is mounted
     onMounted(() => {
       fetchMoreData();
 
+      // Scroll to a specific position based on the window width
       if (window.innerWidth < 500) {
         scrollToPosition(300, 3000);
       } else {
@@ -163,12 +172,10 @@ export default {
       }
     });
 
-    // Clean up the event listener when the component is about to be unmounted
-    // This is important to avoid memory leaks when the component is removed from the DOM
-
+    // Return reactive variables and methods
     return { jobs, loading, onScroll, hasLoadedAllDataRef };
   },
-};
+});
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

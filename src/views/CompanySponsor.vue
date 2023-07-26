@@ -32,16 +32,14 @@
             </div>
           </div>
           <!-- If no suggestions, display the message -->
-          <div class="suggestion" v-else>
-            Hmm... Seems like they are not here yet!.🤔
-          </div>
+          <div class="suggestion" v-else>Hmm... Seems like they are not here yet!.🤔</div>
         </div>
       </div>
       <div v-if="found" class="banner">
         <span class="banner-sub"
           ><p>
-            Congratulations, you've discovered the perfect match! Time to apply
-            with utmost confidence. 🎉💪
+            Congratulations, you've discovered the perfect match! Time to apply with utmost
+            confidence. 🎉💪
           </p>
         </span>
         <div class="congrats" v-if="showAnimation">
@@ -58,76 +56,77 @@
   </div>
 </template>
 
-<script>
-import { debounce } from "lodash";
-import companies from "@/assets/company-list.json";
-import { useHead } from "@vueuse/head";
-import { computed, reactive, onMounted } from "vue";
-export default {
-  name: "CompanySponsor",
+<script lang="ts">
+import { defineComponent, computed, reactive, onMounted, watch } from 'vue'
+import { debounce } from 'lodash'
+import companies from '../assets/company-list.json'
+import { useHead } from '@vueuse/head'
+
+export default defineComponent({
+  name: 'CompanySponsor',
   setup() {
     const siteData = reactive({
       title:
-        "UK Companies Offering Sponsorship Opportunities: Find Your Ideal Sponsorship For Free | UKSponsored",
+        'UK Companies Offering Sponsorship Opportunities: Find Your Ideal Sponsorship For Free | UKSponsored',
       description:
-        "Explore a comprehensive list of leading UK companies that provide sponsorship opportunities. Use our convenient search function to find companies that sponsor foreign talent. Take the next step in your career with UKSponsored.",
-    });
+        'Explore a comprehensive list of leading UK companies that provide sponsorship opportunities. Use our convenient search function to find companies that sponsor foreign talent. Take the next step in your career with UKSponsored.'
+    })
     useHead({
       title: computed(() => siteData.title),
       meta: [
         {
           name: `description`,
-          content: computed(() => siteData.description),
-        },
-      ],
-    });
+          content: computed(() => siteData.description)
+        }
+      ]
+    })
     const scrollToPosition = () => {
       // Scroll the main page (whole window) to the desired position
       window.scrollTo({
         top: 0,
-        behavior: "smooth", // Add smooth scrolling effect
-      });
-    };
+        behavior: 'smooth' // Add smooth scrolling effect
+      })
+    }
     onMounted(() => {
-      scrollToPosition();
-    });
+      scrollToPosition()
+    })
   },
   data() {
     return {
       found: false,
-      userInput: "",
+      userInput: '',
       wordSet: companies,
       showSuggestions: false,
-      showAnimation: false,
-    };
+      showAnimation: false
+    }
   },
   methods: {
     onAnimationComplete() {
-      this.showAnimation = false;
+      this.showAnimation = false
     },
     selectSuggestion() {
-      this.found = true;
-      this.showAnimation = true;
-      this.userInput = "";
-      this.showSuggestions = false;
+      this.found = true
+      this.showAnimation = true
+      this.userInput = ''
+      this.showSuggestions = false
     },
     debouncedSearch: debounce(function () {
-      const userInputLower = this.userInput.trim().toLowerCase();
+      const userInputLower = this.userInput.trim().toLowerCase()
       this.matchingSuggestions = this.wordSet
         .filter((word) => word.toLowerCase().includes(userInputLower))
-        .slice(0, 10);
-      this.showSuggestions = true;
-    }, 300), // Adjust the debounce delay (in milliseconds) to your preference
+        .slice(0, 10)
+      this.showSuggestions = true
+    }, 300) // Adjust the debounce delay (in milliseconds) to your preference
   },
   watch: {
     userInput() {
       if (this.userInput) {
-        this.found = false;
-        this.debouncedSearch();
+        this.found = false
+        this.debouncedSearch()
       }
-    },
-  },
-};
+    }
+  }
+})
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -147,8 +146,8 @@ export default {
     min-width: 330px;
     width: 40%;
     background-color: #fff;
-    overflow-y: "hidden";
-    overflow-x: "hidden";
+    overflow-y: 'hidden';
+    overflow-x: 'hidden';
   }
   .suggestions-container::-webkit-scrollbar {
     display: none; /* Safari and Chrome */
@@ -187,8 +186,8 @@ export default {
     max-width: 800px;
     width: 40%;
     background-color: #fff;
-    overflow-y: "hidden";
-    overflow-x: "hidden";
+    overflow-y: 'hidden';
+    overflow-x: 'hidden';
   }
   .suggestions-container::-webkit-scrollbar {
     display: none; /* Safari and Chrome */
@@ -253,7 +252,7 @@ li:hover {
   fill: #9e9ea7;
 }
 .banner-title {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 700;
   font-size: 6rem;
   margin-left: 75px;
@@ -261,7 +260,7 @@ li:hover {
   min-width: 400px;
 }
 .banner-sub {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 500;
   font-size: 1rem;
   width: 50%;

@@ -5,20 +5,22 @@
 </template>
 
 <script>
-import NavBar from "./components/NavBar.vue";
-import FooterBar from "./components/FooterBar.vue";
-export default {
-  name: "App",
+import { defineComponent } from 'vue'
+import NavBar from './components/NavBar.vue'
+import FooterBar from './components/FooterBar.vue'
+
+export default defineComponent({
+  name: 'App',
   components: {
     NavBar,
-    FooterBar,
-  },
-};
+    FooterBar
+  }
+})
 </script>
 
 <style>
 #app {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: left;
@@ -32,7 +34,7 @@ export default {
 }
 @media (min-width: 501px) {
   body {
-    background-image: url("./assets/bg.jpg");
+    background-image: url('./assets/bg.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;

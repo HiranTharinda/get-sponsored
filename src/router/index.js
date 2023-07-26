@@ -1,6 +1,6 @@
-import ScrollBody from "../components/ScrollBody.vue";
-import CompanySponsor from "../components/CompanySponsor.vue";
-import WhyDoThis from "../components/WhyDoThis.vue";
+import ScrollBody from "../views/ScrollBody.vue";
+import CompanySponsor from "../views/CompanySponsor.vue";
+import WhyDoThis from "../views/WhyDoThis.vue";
 import { createWebHistory, createRouter } from "vue-router";
 const routes = [
     {

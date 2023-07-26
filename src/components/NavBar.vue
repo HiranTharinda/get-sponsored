@@ -2,23 +2,17 @@
   <div class="nav-wrapper">
     <div class="nav">
       <div class="nav-right-container">
-        <router-link to="/why">
-          <span class="nav-item-two">Why</span></router-link
-        >
+        <router-link to="/why"> <span class="nav-item-two">Why</span></router-link>
         <router-link to="/"
           ><span class="nav-item"
-            ><span class="logo"
-              ><span class="logo-uk">UK</span>Sponsored</span
-            ></span
+            ><span class="logo"><span class="logo-uk">UK</span>Sponsored</span></span
           ></router-link
         >
-        <router-link to="/companies">
-          <span class="nav-item-one">Companies</span></router-link
-        >
+        <router-link to="/companies"> <span class="nav-item-one">Companies</span></router-link>
       </div>
 
       <div class="nav-left-container">
-        <div v-if="isHomeRoute()" class="filters">
+        <div v-if="isHomeRoute" class="filters">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"
@@ -47,31 +41,30 @@
     </div>
     <div class="banner-wrap">
       <div class="left-body">
-        <span v-if="isHomeRoute()" class="f_count">
-          <CounterDigit :value="fTotal" :home="isHomeRoute()" />
+        <span v-if="isHomeRoute" class="f_count">
+          <CounterDigit :value="fTotal" :isHome="isHomeRoute" />
         </span>
-        <span v-if="isCompaniesRoute()" class="f_count">
-          <CounterDigit :value="companiesCount" :home="isHomeRoute()" />
+        <span v-if="isCompaniesRoute" class="f_count">
+          <CounterDigit :value="companiesCount" :isHome="isHomeRoute" />
         </span>
       </div>
-      <div v-if="isHomeRoute()" class="banner">
+      <div v-if="isHomeRoute" class="banner">
         <span class="banner-title">Sponsored!</span>
         <span class="banner-sub"
-          >We strive to assist with UK job opportunities that offer
-          sponsorships, helping you elevate your career with ease. 🇬🇧💼🚀</span
+          >We strive to assist with UK job opportunities that offer sponsorships, helping you
+          elevate your career with ease. 🇬🇧💼🚀</span
         >
       </div>
 
-      <div v-if="isWhyRoute()" class="banner-why">
+      <div v-if="isWhyRoute" class="banner-why">
         <span class="banner-title-why">Why</span>
         <span class="banner-title-why">Do</span>
         <span class="banner-title-why">This</span>
       </div>
-      <div v-if="isCompaniesRoute()" class="banner">
+      <div v-if="isCompaniesRoute" class="banner">
         <span class="banner-title">Companies</span>
         <span class="banner-sub"
-          >You've got a dream company in mind? 🌟💼 Time to play
-          detective!🕵️‍♂️</span
+          >You've got a dream company in mind? 🌟💼 Time to play detective!🕵️‍♂️</span
         >
       </div>
       <div class="right-body"></div>
@@ -80,31 +73,40 @@
 </template>
 
 <script>
-import { ref, computed } from "vue";
-import CounterDigit from "./CounterDigit.vue";
-import { useStore } from "vuex";
-import { useRoute } from "vue-router";
+import { ref, computed } from 'vue'
+import CounterDigit from './CounterDigit.vue'
+import { useStore } from 'vuex'
+import { useRoute } from 'vue-router'
+
 export default {
-  name: "NavBar",
+  name: 'NavBar',
   components: {
-    CounterDigit,
+    CounterDigit
   },
   setup() {
-    const route = useRoute();
-    const store = useStore();
-    const isHomeRoute = () => route.name === "Home";
-    const isCompaniesRoute = () => route.name === "Companies";
-    const isWhyRoute = () => route.name === "Why";
-    const fTotal = computed(() => store.state.filteredTotal);
-    const companiesCount = computed(() => store.state.companiesCount);
-    const searchText = ref("");
+    // Vue Router
+    const route = useRoute()
+    // Vuex Store
+    const store = useStore()
 
+    // Computed properties
+    const isHomeRoute = computed(() => route.name === 'Home')
+    const isCompaniesRoute = computed(() => route.name === 'Companies')
+    const isWhyRoute = computed(() => route.name === 'Why')
+    const fTotal = computed(() => store.state.filteredTotal)
+    const companiesCount = computed(() => store.state.companiesCount)
+
+    // Reactive search text
+    const searchText = ref('')
+
+    // Function to handle search button click
     const handleSearch = () => {
-      store.commit("setPaginated", null);
-      store.dispatch("resetData");
-      store.commit("updateTitle", searchText.value);
-    };
+      store.commit('setPaginated', null)
+      store.dispatch('resetData')
+      store.commit('updateTitle', searchText.value)
+    }
 
+    // Return reactive variables and functions
     return {
       searchText,
       handleSearch,
@@ -113,17 +115,17 @@ export default {
       companiesCount,
       isHomeRoute,
       isCompaniesRoute,
-      isWhyRoute,
-    };
-  },
-};
+      isWhyRoute
+    }
+  }
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 @media (max-width: 900px) {
   .banner-title-why {
-    font-family: "Poppins", sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 700;
     font-size: 5rem;
     height: 70px;
@@ -159,14 +161,14 @@ export default {
     margin-left: 5%;
   }
   .banner-title {
-    font-family: "Poppins", sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 700;
     font-size: 3rem;
     max-width: 800px;
     min-width: 400px;
   }
   .banner-sub {
-    font-family: "Poppins", sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 500;
     font-size: 1rem;
     width: 80%;
@@ -224,7 +226,7 @@ export default {
     z-index: 1000;
   }
   .banner-title-why {
-    font-family: "Poppins", sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 700;
     font-size: 5rem;
   }
@@ -272,7 +274,7 @@ export default {
     width: 100%;
   }
   .banner-title {
-    font-family: "Poppins", sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 700;
     font-size: 6rem;
     margin-left: 75px;
@@ -280,7 +282,7 @@ export default {
     min-width: 400px;
   }
   .banner-sub {
-    font-family: "Poppins", sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 500;
     font-size: 1rem;
     width: 50%;
@@ -349,12 +351,12 @@ input:focus {
   width: 30%;
 }
 .logo-uk {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 500;
   font-size: 0.8rem;
 }
 span.f_count {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 200;
   font-size: 6rem;
 }
@@ -372,7 +374,7 @@ a {
 }
 .nav-item-one {
   text-align: right;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 300;
   font-size: 0.8rem;
   width: 49px;
@@ -381,65 +383,15 @@ a {
 }
 .nav-item-two {
   text-align: left;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 300;
   font-size: 0.8rem;
   width: 100px;
   margin-left: 20px;
   margin-right: 20px;
 }
-.nav-item-about {
-  text-align: right;
-  font-family: "Poppins", sans-serif;
-  font-weight: 300;
-  font-size: 12px;
-  width: 100px;
-  margin-left: 20px;
-  margin-right: 20px;
-}
 .logo {
-  font-family: "Lobster", cursive;
+  font-family: 'Lobster', cursive;
   font-size: 1rem;
-}
-
-.square-btn {
-  font-family: "Poppins", sans-serif;
-  font-weight: 300;
-  font-size: 12px;
-  background: black;
-  width: 100px;
-  height: 40px;
-  color: white;
-}
-.counter {
-  display: inline-flex;
-  font-size: 36px;
-}
-
-.digit {
-  position: relative;
-  margin-right: 5px;
-}
-
-.animation-container {
-  overflow: hidden;
-  height: 40px;
-}
-
-.number {
-  position: absolute;
-  transition: top 0.4s ease-in-out;
-  top: 0;
-}
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
 }
 </style>
