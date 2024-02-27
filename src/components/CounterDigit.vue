@@ -9,7 +9,7 @@
 import { ref, watch, PropType } from 'vue'
 
 export default {
-  name: 'CounterDigit',
+  name: 'CounterDigita',
   props: {
     value: {
       type: String as PropType<string>, // Use PropType for type annotation
@@ -51,6 +51,7 @@ export default {
   justify-content: center;
   align-items: center;
 }
+
 div.count-sub {
   width: 200px;
   display: flex;
@@ -63,6 +64,7 @@ div.count-sub {
   margin-top: -35px;
   margin-bottom: 26px;
 }
+
 span.count-sub {
   font-family: 'Poppins', sans-serif;
   font-weight: 300;
