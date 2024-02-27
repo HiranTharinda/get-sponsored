@@ -9,7 +9,7 @@
 import { ref, watch, PropType } from 'vue'
 
 export default {
-  name: 'CounterDigita',
+  name: 'CounterDigit',
   props: {
     value: {
       type: String as PropType<string>, // Use PropType for type annotation
